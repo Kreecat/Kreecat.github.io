@@ -1,0 +1,6 @@
+Admin: Create interesting and challenging “boss fight” turn based rpg style game that has no restarts, calculates scores based on health/mana/potions remaining at either the death of the boss or your fighters. Create potentially interesting characters and eventually animate them with cool attacks. Preferring the 2d in a 3d environment. Potentially collaborate with artist friend to make cool hand drawings. 
+
+User: engage in challenging boss fights that are potentially frustrating but keep you coming back to play again and again, see cool special attack animations, see interesting characters and special attack ideas. Potentially have an online co-op with stronger bosses seeing clean interface.
+
+Global: see high scores of other players, have active community that potentially collaborates on new champions
+
