@@ -4,3 +4,5 @@ User: engage in challenging boss fights that are potentially frustrating but kee
 
 Global: see high scores of other players, have active community that potentially collaborates on new champions
 
+Ideas: mouseover stats to check sat weights, possibly add secret variables (i.e. 2 defends 1 sp attack 1 heal in order activates a buff for your character or something)
+Mouseover health and mana bars to see current values, stylize with cool background style splashes on the “face pic areas” button mouse overs give little new details, maybe swords move or over the class button there is a shield or a special thing that pops up on top as well as having the click event listener 
