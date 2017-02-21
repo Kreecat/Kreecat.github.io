@@ -23,3 +23,22 @@ button{
 	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#f01313', endColorstr='#000000',GradientType=0 );
 
 }
+
+#fighterHpBar, #bossHpBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: lightgreen;
+}
+
+#fighterHpContainer, #bossHpContainer {
+	position: relative;
+	height: 30px;
+	width: 250px;
+	border: white 3px solid;
+	border-radius: 3px;
+	margin-right: 20px;
+	display: inline-block;
+}
