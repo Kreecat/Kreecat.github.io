@@ -33,15 +33,15 @@ pSpAttack.addEventListener('click', function(e){
 })
 
 function btnDisable(){
-	pAttack.disable = true;
-	pHeal.disable = true;
-	pSpAttack.disable = true;
+	pAttack.disabled = true;
+	pHeal.disabled = true;
+	pSpAttack.disabled = true;
 }
 
 function btnEnable(){
-	pAttack.disable = false;
-	pHeal.disable = false;
-	pSpAttack.disable = false;
+	pAttack.disabled = false;
+	pHeal.disabled = false;
+	pSpAttack.disabled = false;
 }
 
 
@@ -185,13 +185,14 @@ var theBoss = {
 		if(this.currentForm === "enrage"){
 			alert(this.name + " is going to EAT");
 			this.healCounter += 1
-		} else if (this.healCounter % 3 === 0){
-			consume = attrStats(5, 10)
-			summonHero.hitPoints -= consume
-			this.hitPoints = 25
-			this.currentForm = "Normal";
-			alert(this.name + " CONSUMES YOUR FLESH FOR " + consume);
-		}
+			if (this.healCounter % 3 === 0){
+				consume = attrStats(5, 10)
+				summonHero.hitPoints -= consume
+				this.hitPoints = 25
+				this.currentForm = "Normal";
+				alert(this.name + " CONSUMES YOUR FLESH FOR " + consume);
+			} 
+		} 
 
 	},
 
@@ -205,13 +206,27 @@ var theBoss = {
 		} else {
 			bossHpBarNum.style.color = "white";
 		}
+	}, 
+	bossMove : function(){
+	var ability = Math.floor(Math.random() * 3 + 1)
+		if (ability === 1){
+			this.attack();
+			addRound();
+		}else if (ability === 2){
+			this.special();
+			addRound();
+		}else if (ability === 3){
+			this.consume();
+			addRound();
+		}
 	}
+
 
 }
 
 function fight(){
 	addRound();
-	//setTimeout(bossMove(), 5000);
+	setTimeout(theBoss.bossMove(), 5000);
 	barChanges();
 	gameOver();
 	theBoss.rage();
@@ -233,27 +248,13 @@ function gameOver(){
 
 function barChanges(){
 	heroHpBarNum.innerHTML = nameMe + " health " + summonHero.hitPoints;
-	heroHpBarNum.style.width = summonHero.hitPoints + "%";
+	// heroHpBarNum.style.width = summonHero.hitPoints + "%";
 	heroManaBarNum.innerHTML = "mana " + summonHero.mana;
-	heroManaBarNum.style.width = summonHero.mana + "%";
+	// heroManaBarNum.style.width = summonHero.mana + "%";
 	bossHpBarNum.innerHTML = theBoss.name + " health " + theBoss.hitPoints;
-	bossHpBarNum.style.width = theBoss.hitPoints + "%";
+	// bossHpBarNum.style.width = theBoss.hitPoints + "%";
 }
 
-// function bossMove(function()){
-// 	var ability = attrStats(1, 3){
-// 		if (ability = 1){
-// 			theBoss.attack();
-// 			addRound();
-// 		}else if (ability = 2){
-// 			theBoss.special();
-// 			addRound();
-// 		}else if (ability = 3){
-// 			theBoss.consume();
-// 			addRound();
-// 		}
-// 	}
-// }
 
 //style for bars
 var heroHpBarNum = document.getElementById('fighterHpBar');
