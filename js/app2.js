@@ -1,4 +1,4 @@
-console.log('im working')
+console.log('im working');
 
 //round counter variable to decide turns and function to add rounds
 
@@ -13,24 +13,30 @@ function addRound(){
 var pAttack = document.getElementById('attackBtn');
 var pHeal = document.getElementById('healBtn');
 var pSpAttack = document.getElementById('spAttackBtn');
+// var classSp = document.getElementById('classSPBtn');
 
 pAttack.addEventListener('click', function(e){
 	summonHero.attack();
 	fight();
 	console.log('working');
-})
+});
 
 pHeal.addEventListener('click', function(e){
 	summonHero.heal();
 	fight();
 	console.log('working');
-})
+});
 
 pSpAttack.addEventListener('click', function(e){
 	summonHero.spAttack();
 	fight();
 	console.log('working');
-})
+});
+// classSp.addEventListener('click', function(e){
+// 	summonHero.barrier();
+// 	fight();
+
+// })
 
 function btnDisable(){
 	pAttack.disabled = true;
@@ -71,7 +77,9 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 	this.str = str || '';
 	this.wis = wis || '';
 	this.int = int || '';
-	this.cp = 10 || '';
+	this.cp = 2 || '';
+	this.maxHp = hitPoints || '';
+	this.maxMana = mana || '';
 
 	var attDamage = '';
 	var spDamage = '';
@@ -97,50 +105,63 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 	};
 	//healing function
 	this.heal = function(){
-		if (wis <= 10){
-			heal = attrStats(1, 3);
-			healAmnt = heal;
-			this.hitPoints += healAmnt;
-			this.mana -= 4
-		} else if (wis <= 20){
-			heal = attrStats(1, 5);
-			healAmnt = heal;
-			this.hitPoints += healAmnt;
-			this.mana  -= 4
-		} else if (wis <= 30){
-			heal = attrStats(2, 7);
-			healAmnt = heal;
-			this.hitPoints += healAmnt;
-			this.mana -= 4
-		} else{
+		if (this.mana >= 4){
+			if (wis <= 10){
+				heal = attrStats(1, 3);
+				healAmnt = heal;
+				this.hitPoints += this.hitPoints + healAmnt >= this.maxHp ? this.maxHp - this.hitPoints : healAmnt;
+				this.mana -= 4;
+			} else if (wis <= 20){
+				heal = attrStats(1, 5);
+				healAmnt = heal;
+				this.hitPoints += this.hitPoints + healAmnt >= this.maxHp ? this.maxHp - this.hitPoints : healAmnt;
+				this.mana  -= 4;
+			} else if (wis <= 30){
+				heal = attrStats(2, 7);
+				healAmnt = heal;
+				this.hitPoints += this.hitPoints + healAmnt >= this.maxHp ? this.maxHp - this.hitPoints : healAmnt;
+				this.mana -= 4;
+			} else{
 
+			}
+		}else {
+			alert("Not Enough Mana!");
 		}
 	};
 	//spAttack function
 	this.spAttack = function(){
-		if (int <= 10){
-			spAttack = attrStats(2, 4);
-			spDamage = spAttack;
-			theBoss.hitPoints -= spDamage;
-			this.mana  -= 2
-		} else if (int <= 20){
-			spAttack = attrStats(3, 8);
-			spDamage = spAttack;
-			theBoss.hitPoints -= spDamage;
-			this.mana  -= 4
-		} else if (int <= 30){
-			spAttack = attrStats(5, 11);
-			spDamage = spAttack;
-			theBoss.hitPoints -= spDamage;
-			this.mana -= 4
-		} else {
+		if (this.mana >= 2){
+			if (int <= 10){
+				spAttack = attrStats(2, 4);
+				spDamage = spAttack;
+				theBoss.hitPoints -= spDamage;
+				this.mana  -= 2;
+			} else if (int <= 20){
+				spAttack = attrStats(3, 8);
+				spDamage = spAttack;
+				theBoss.hitPoints -= spDamage;
+				this.mana  -= 2;
+			} else if (int <= 30){
+				spAttack = attrStats(5, 11);
+				spDamage = spAttack;
+				theBoss.hitPoints -= spDamage;
+				this.mana -= 2;
+			} else {
 
+			}
+		}else {
+			alert("Not Enough Mana");
 		}
 	};
 	//barrier function
-	this.classSP  = function(){
-		//need to figure out functionality of barrier later
-	}
+	// this.barrier = function(){
+	// 	//need to figure out functionality of barrier later
+	// 	if(this.cp > 0){
+	// 		this.cp--;
+	// 		this.barrierStart = round + 1;
+	// 		this.barrierLength = 2;
+	// 	}
+	// }
 }
 
 
@@ -149,6 +170,7 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 var theBoss = {
 	name: "Kreecat",
 	hitPoints: 50,
+	maxHp: 50,
 	currentForm: "Normal",
 	spCounter: 0,
 	healCounter: 0,
@@ -157,15 +179,15 @@ var theBoss = {
 	attack: function(){
 		//attacks player for either 1-2 damage
 		if (this.currentForm === "Normal"){
-			attack = attrStats(1, 3)
-			summonHero.hitPoints -= attack
+			attack = attrStats(1, 3);
+			summonHero.hitPoints -= attack;
 			alert(this.name + " attacks for " + attack);
+			//if enraged deals 2-5 damage
 		} else if (this.currentForm === "Enraged"){
-			attack = attrStats(2, 5)
-			summonHero.hitPoints -= attack
+			attack = attrStats(2, 5);
+			summonHero.hitPoints -= attack;
 			alert(this.name + " attacks for " + attack);
 		}
-		//if enraged deals 2-5 damage
 	},
 
 	special: function(){
@@ -174,7 +196,7 @@ var theBoss = {
 			alert(this.name + " looks gassy");
 			this.spCounter += 1;
 		} else{
-			special = attrStats(5, 8)
+			special = attrStats(5, 8);
 			summonHero.hitPoints -= special;
 			this.spCounter += 1;
 			alert(this.name + " attacks for " + special);
@@ -184,15 +206,17 @@ var theBoss = {
 		//consumes the minion for full heal, only does this during enrage
 		if(this.currentForm === "enrage"){
 			alert(this.name + " is going to EAT");
-			this.healCounter += 1
+			this.healCounter += 1;
 			if (this.healCounter % 3 === 0){
-				consume = attrStats(5, 10)
-				summonHero.hitPoints -= consume
-				this.hitPoints = 25
+				consume = attrStats(5, 10);
+				summonHero.hitPoints -= consume;
+				this.hitPoints = 25;
 				this.currentForm = "Normal";
 				alert(this.name + " CONSUMES YOUR FLESH FOR " + consume);
 			} 
-		} 
+		} else {
+			this.attack();
+		}
 
 	},
 
@@ -200,33 +224,38 @@ var theBoss = {
 	rage: function(){
 		if (this.hitPoints <= 15){
 			this.currentForm = "Enraged";
-			if(this.currentForm = "Enraged"){
+			if(this.currentForm === "Enraged"){
 				bossHpBarNum.style.color = "red";
 			}
 		} else {
 			bossHpBarNum.style.color = "white";
 		}
 	}, 
+	
 	bossMove : function(){
-	var ability = Math.floor(Math.random() * 3 + 1)
-		if (ability === 1){
-			this.attack();
-			addRound();
-		}else if (ability === 2){
-			this.special();
-			addRound();
-		}else if (ability === 3){
-			this.consume();
-			addRound();
-		}
+	var ability = Math.floor(Math.random() * 3 + 1); 
+		// if (!summonHero.barrierStart || round < summonHero.barrierStart || round > summonHero.barrierStart + summonHero.barrierLength){
+			if (ability === 1){
+				this.attack();
+			
+			}else if (ability === 2){
+				this.special();
+			
+			}else if (ability === 3){
+				this.consume();
+			}
+		// }else if(summonHero.barrierStart && round > summonHero.barrierStart + summonHero.barrierLength){
+		// 	summonHero.barrierStart = 0
+
+		// }
 	}
 
 
-}
+};
 
 function fight(){
 	addRound();
-	setTimeout(theBoss.bossMove(), 5000);
+	setTimeout(theBoss.bossMove(), 10000);
 	barChanges();
 	gameOver();
 	theBoss.rage();
@@ -237,10 +266,10 @@ function fight(){
 function gameOver(){
 	if (summonHero.hitPoints <= 0){
 		btnDisable();
-		alert("Game Over, " + nameMe + " has died.")
+		alert("Game Over, " + nameMe + " has died.");
 	}else if (theBoss.hitPoints <= 0){
 		btnDisable();
-		alert("Game Over, " + theBoss.name + " has died.")
+		alert("Game Over, " + theBoss.name + " has dead.");
 	}else{
 
 	}
@@ -248,11 +277,11 @@ function gameOver(){
 
 function barChanges(){
 	heroHpBarNum.innerHTML = nameMe + " health " + summonHero.hitPoints;
-	// heroHpBarNum.style.width = summonHero.hitPoints + "%";
+	heroHpBarNum.style.width = ((summonHero.hitPoints / summonHero.maxHp) * 100) + "%";
 	heroManaBarNum.innerHTML = "mana " + summonHero.mana;
-	// heroManaBarNum.style.width = summonHero.mana + "%";
+	heroManaBarNum.style.width = ((summonHero.mana / summonHero.maxMana) * 100) + "%";
 	bossHpBarNum.innerHTML = theBoss.name + " health " + theBoss.hitPoints;
-	// bossHpBarNum.style.width = theBoss.hitPoints + "%";
+	bossHpBarNum.style.width = ((theBoss.hitPoints / theBoss.maxHp) * 100) + "%";
 }
 
 
@@ -268,55 +297,4 @@ bossHpBarNum.innerHTML = theBoss.name + " health " + theBoss.hitPoints;
 
 
 window.onload = btnEnable();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

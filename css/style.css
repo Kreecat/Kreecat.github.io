@@ -25,6 +25,64 @@ button{
 
 }
 
+#header{
+	background-image: none;
+	background: url("../imgs/background.png");
+	background-size: cover;
+	width: 100%;
+	height: 100px;
+}
+#title{
+	font-size: 100px;
+	float: left;
+	clear: both;
+
+}
+ #list, a, li{
+ 	text-decoration: none;
+ 	color: white;
+ 	list-style: none;
+ 	float: right;
+ 	margin-left: 45px;
+ }
+
+#boxContainer{
+	width: 50%;
+	height: 60px;
+	margin-left: 25%;
+}
+
+#btnsContainer{
+	float: right;
+	clear: both;
+}
+#backgroundContainer{
+	background-image: none;
+	background-color: red;
+	height: 600px;
+	width: 100%;
+	background: url("../imgs/ocean.jpeg");
+	background-size: cover;
+    background-repeat: no-repeat;
+    clear: both;
+}
+#statsContainer{
+	bottom: 0;
+	position: relative;
+	float: left;
+	clear: both;
+}
+#fighterImgContainer{
+	float: left;
+	display: inline-block;
+}
+
+#bossImgContainer{
+	display: inline-block;
+	float: right;
+	clear: right;
+}
+
 #fighterHpBar{
 	position: absolute;
 	top: 0;
@@ -50,13 +108,30 @@ button{
 	width: 100%;
 	background: lightgreen;
 }
+#hpContainers{
+	width: 100%;
+	height: 60px;
+}
 #fighterHpContainer, #bossHpContainer {
 	position: relative;
+	clear: both;
 	height: 30px;
-	width: 800px;
+	width: 700px;
 	border: white 3px solid;
 	border-radius: 3px;
 	margin-right: 20px;
+	margin-left: 0;
 	display: inline-block;
+	
+}
+#footer{
+	background-color: #708090;
+	text-align: center;
+	position: absolute;
+	background-attachment: scroll;
+	bottom: 0;
+	width:100%;
+	clear: both;
+
 }
 
