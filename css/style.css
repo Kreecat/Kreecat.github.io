@@ -54,7 +54,7 @@ button{
 
 #btnsContainer{
 	float: right;
-	clear: both;
+	
 }
 #backgroundContainer{
 	background-image: none;
@@ -133,5 +133,14 @@ button{
 	width:100%;
 	clear: both;
 
+}
+
+#dmgTxt{
+	background: black;
+	height: 300px;
+	width: 300px;
+	color: white;
+	float: left;
+	margin: 150px 0px 0px 250px;
 }
 

@@ -2,7 +2,7 @@ console.log('im working');
 
 //round counter variable to decide turns and function to add rounds
 
-var round = 1;
+var round = 0;
 function addRound(){
 	round += 1;
 }
@@ -13,7 +13,7 @@ function addRound(){
 var pAttack = document.getElementById('attackBtn');
 var pHeal = document.getElementById('healBtn');
 var pSpAttack = document.getElementById('spAttackBtn');
-// var classSp = document.getElementById('classSPBtn');
+var classSp = document.getElementById('classSPBtn');
 
 pAttack.addEventListener('click', function(e){
 	summonHero.attack();
@@ -32,11 +32,11 @@ pSpAttack.addEventListener('click', function(e){
 	fight();
 	console.log('working');
 });
-// classSp.addEventListener('click', function(e){
-// 	summonHero.barrier();
-// 	fight();
+classSp.addEventListener('click', function(e){
+	summonHero.barrier();
+	fight();
 
-// })
+})
 
 function btnDisable(){
 	pAttack.disabled = true;
@@ -67,7 +67,8 @@ function attrStats(min, max) {
 var nameMe = prompt('give me a name');
 
 //summon the hero
-var summonHero = new TheHero( nameMe, statNumbers(), statNumbers(), statNumbers(), statNumbers(), statNumbers());
+var summonHero = new TheHero(
+	nameMe, statNumbers(), statNumbers(), statNumbers(), statNumbers(), statNumbers());
 
 //this is the random char stat sheet
 function TheHero (name, hitPoints, mana, str, wis, int, cp){
@@ -153,15 +154,15 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 			alert("Not Enough Mana");
 		}
 	};
-	//barrier function
-	// this.barrier = function(){
-	// 	//need to figure out functionality of barrier later
-	// 	if(this.cp > 0){
-	// 		this.cp--;
-	// 		this.barrierStart = round + 1;
-	// 		this.barrierLength = 2;
-	// 	}
-	// }
+	this.barrier = function(){
+		//need to figure out functionality of barrier later
+		if(this.cp > 0){
+			this.cp--;
+			this.barrierStart = round + 1;
+			this.barrierLength = 2;
+			statsBar.innerHTML = nameMe + "<br>" + "Str: " + summonHero.str + "    Int: " + summonHero.int + "<br>" + "Wis: " + summonHero.wis + "    CP: " + summonHero.cp;
+		}
+	}
 }
 
 
@@ -181,38 +182,38 @@ var theBoss = {
 		if (this.currentForm === "Normal"){
 			attack = attrStats(1, 3);
 			summonHero.hitPoints -= attack;
-			alert(this.name + " attacks for " + attack);
+			noAlert(this.name + " attacks for " + attack);
 			//if enraged deals 2-5 damage
 		} else if (this.currentForm === "Enraged"){
 			attack = attrStats(2, 5);
 			summonHero.hitPoints -= attack;
-			alert(this.name + " attacks for " + attack);
+			noAlert(this.name + " attacks for " + attack);
 		}
 	},
 
 	special: function(){
 		//wait for 1 turn, attack with special attack, deals 5-8 points of damage
 		if (this.spCounter % 2 === 0){
-			alert(this.name + " looks gassy");
+			noAlert(this.name + " looks gassy");
 			this.spCounter += 1;
 		} else{
 			special = attrStats(5, 8);
 			summonHero.hitPoints -= special;
 			this.spCounter += 1;
-			alert(this.name + " attacks for " + special);
+			noAlert(this.name + " attacks for " + special);
 		}
 	},
 	consume: function(){
 		//consumes the minion for full heal, only does this during enrage
 		if(this.currentForm === "enrage"){
-			alert(this.name + " is going to EAT");
+			noAlert(this.name + " is going to EAT");
 			this.healCounter += 1;
 			if (this.healCounter % 3 === 0){
 				consume = attrStats(5, 10);
 				summonHero.hitPoints -= consume;
 				this.hitPoints = 25;
 				this.currentForm = "Normal";
-				alert(this.name + " CONSUMES YOUR FLESH FOR " + consume);
+				noAlert(this.name + " CONSUMES YOUR FLESH FOR " + consume);
 			} 
 		} else {
 			this.attack();
@@ -231,10 +232,10 @@ var theBoss = {
 			bossHpBarNum.style.color = "white";
 		}
 	}, 
-	
+
 	bossMove : function(){
 	var ability = Math.floor(Math.random() * 3 + 1); 
-		// if (!summonHero.barrierStart || round < summonHero.barrierStart || round > summonHero.barrierStart + summonHero.barrierLength){
+		if (!summonHero.barrierStart || round <= summonHero.barrierStart || round > summonHero.barrierStart + summonHero.barrierLength){
 			if (ability === 1){
 				this.attack();
 			
@@ -244,10 +245,10 @@ var theBoss = {
 			}else if (ability === 3){
 				this.consume();
 			}
-		// }else if(summonHero.barrierStart && round > summonHero.barrierStart + summonHero.barrierLength){
-		// 	summonHero.barrierStart = 0
+		}else if(summonHero.barrierStart && round > summonHero.barrierStart + summonHero.barrierLength){
+			summonHero.barrierStart = 0
 
-		// }
+		}
 	}
 
 
@@ -295,6 +296,14 @@ heroManaBarNum.innerHTML = "mana " + summonHero.mana;
 var bossHpBarNum = document.getElementById('bossHpBar');
 bossHpBarNum.innerHTML = theBoss.name + " health " + theBoss.hitPoints;
 
+var statsBar = document.getElementById('statsContainer');
+statsBar.innerHTML = nameMe + "<br>" + "Str: " + summonHero.str + "    Int: " + summonHero.int + "<br>" + "Wis: " + summonHero.wis + "    CP: " + summonHero.cp;
+
+var noAlertWindow = document.getElementById('dmgTxt');
+noAlertWindow.innerHTML = "Ready? FIGHT!" + "<br>";
+function noAlert(string){
+	noAlertWindow.innerHTML += "Round: " + round + "<br>" + (string) + "<br>";
+}
 
 window.onload = btnEnable();
 
