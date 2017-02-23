@@ -90,6 +90,7 @@ button{
 	height: 50%;
 	width: 100%;
 	background: lightgreen;
+	font-size: 30px;
 }
 #fighterManaBar {
 	position: absolute;
@@ -98,6 +99,7 @@ button{
 	height: 50%;
 	width: 100%;
 	background: blue;
+	font-size: 30px;
 }
 
 #bossHpBar {
@@ -107,15 +109,16 @@ button{
 	height: 100%;
 	width: 100%;
 	background: lightgreen;
+	font-size: 30px;
 }
 #hpContainers{
 	width: 100%;
-	height: 60px;
+	height: 100px;
 }
 #fighterHpContainer, #bossHpContainer {
 	position: relative;
 	clear: both;
-	height: 30px;
+	height: 75px;
 	width: 700px;
 	border: white 3px solid;
 	border-radius: 3px;
