@@ -92,14 +92,17 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 			attack = attrStats(1, 5);
 			attDamage = attack;
 			theBoss.hitPoints -= attDamage;
+			noAlert(this.name + " attacks for " + attack);
 		} else if (str <= 20){
 			attack = attrStats(2, 6);
 			attDamage = attack;
 			theBoss.hitPoints -= attDamage;
+			noAlert(this.name + " attacks for " + attack);
 		} else if (str <= 30){
 			attack = attrStats(4, 8);
 			attDamage = attack;
 			theBoss.hitPoints -= attDamage;
+			noAlert(this.name + " attacks for " + attack);
 		} else {
 
 		}
@@ -112,16 +115,19 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 				healAmnt = heal;
 				this.hitPoints += this.hitPoints + healAmnt >= this.maxHp ? this.maxHp - this.hitPoints : healAmnt;
 				this.mana -= 4;
+				noAlert(this.name + " heals for " + heal);
 			} else if (wis <= 20){
 				heal = attrStats(1, 5);
 				healAmnt = heal;
 				this.hitPoints += this.hitPoints + healAmnt >= this.maxHp ? this.maxHp - this.hitPoints : healAmnt;
 				this.mana  -= 4;
+				noAlert(this.name + " heals for " + heal);
 			} else if (wis <= 30){
 				heal = attrStats(2, 7);
 				healAmnt = heal;
 				this.hitPoints += this.hitPoints + healAmnt >= this.maxHp ? this.maxHp - this.hitPoints : healAmnt;
 				this.mana -= 4;
+				noAlert(this.name + " heals for " + heal);
 			} else{
 
 			}
@@ -137,16 +143,19 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 				spDamage = spAttack;
 				theBoss.hitPoints -= spDamage;
 				this.mana  -= 2;
+				noAlert(this.name + " shakes his firestick for " + spDamage);
 			} else if (int <= 20){
 				spAttack = attrStats(3, 8);
 				spDamage = spAttack;
 				theBoss.hitPoints -= spDamage;
 				this.mana  -= 2;
+				noAlert(this.name + " shakes his firestick for " + spDamage);
 			} else if (int <= 30){
 				spAttack = attrStats(5, 11);
 				spDamage = spAttack;
 				theBoss.hitPoints -= spDamage;
 				this.mana -= 2;
+				noAlert(this.name + " shakes his firestick for " + spDamage);
 			} else {
 
 			}
@@ -161,6 +170,7 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 			this.barrierStart = round + 1;
 			this.barrierLength = 2;
 			statsBar.innerHTML = nameMe + "<br>" + "Str: " + summonHero.str + "    Int: " + summonHero.int + "<br>" + "Wis: " + summonHero.wis + "    CP: " + summonHero.cp;
+			noAlert(this.name + " casts Barrier!");
 		}
 	}
 }
