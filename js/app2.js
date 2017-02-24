@@ -177,7 +177,7 @@ function TheHero (name, hitPoints, mana, str, wis, int, cp){
 
 
  
-
+//The boss!
 var theBoss = {
 	name: "Kreecat",
 	hitPoints: 50,
