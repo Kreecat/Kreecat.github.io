@@ -1,0 +1,56 @@
+@-ms-viewport{
+	width: device-width;
+}
+
+body {
+	background-color: black;
+	color: white;
+	font-family: 'Quicksand', sans-serif;
+}
+
+h1{	
+	font-size: 100px;
+}
+
+h2{
+	font-size: 60px;
+}
+
+ul, li {
+	text-decoration: none;
+	list-style: none;
+}
+
+.link {
+	text-decoration: none;
+	color: green;
+}
+
+.links {
+	text-align: center;
+	float: right;
+}
+
+.about {
+	font-size: 15px;
+}
+
+.projects{	
+	height: 45vh;
+	text-align: center;
+}
+
+.pic{
+	height: 300px;
+	width: 300px;
+	margin-right: 70px;
+}
+
+#project{
+	display: inline-block;
+}
+
+.profile {
+	height: 25px;
+	width: 25px;
+}
