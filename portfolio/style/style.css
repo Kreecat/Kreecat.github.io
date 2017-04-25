@@ -22,6 +22,7 @@ h3{
 ul, li {
 	text-decoration: none;
 	list-style: none;
+	display: inline;
 }
 
 .link {
@@ -32,6 +33,7 @@ ul, li {
 .links {
 	text-align: center;
 	float: right;
+	display: inline;
 }
 
 .about {
