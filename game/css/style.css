@@ -1,3 +1,7 @@
+@-ms-viewport{
+	width: device-width;
+}
+
 body{
 	background-color: black;
 	color: white;
@@ -62,7 +66,7 @@ img{
 	position: relative;
 	clear: both;
 	height: 75px;
-	width: 700px;
+	width: 500px;
 	border: white 3px solid;
 	border-radius: 3px;
 	margin-right: 20px;
@@ -125,7 +129,7 @@ img{
 	width: 300px;
 	color: white;
 	float: left;
-	margin: 100px 0px 0px 300px;
+	margin: 100px 0px 0px 50px;
 	font-family: 'VT323', monospace;
 	overflow: scroll;
 }
@@ -135,7 +139,10 @@ img{
 	float: right;
 	clear: right;
 	height: 100%;
-
+}
+#bossImg{
+	height: 500px;
+	width: 400px;
 }
 
 #boxContainer{
@@ -151,7 +158,7 @@ img{
 	clear: both;
 	font-family: 'Bahiana', cursive;
 	height: 100%;
-	width: 300px;
+	width: 100px;
     font-size: x-large;
 }
 
